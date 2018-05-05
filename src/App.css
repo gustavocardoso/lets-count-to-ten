@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  font: normal normal 16px/1.5 'Open Sans', sans-serif;
+  background: #eee;
+}
+
+h1, h2, h3 {
+  font-family: 'Passion One', cursive;
+}
