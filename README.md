@@ -3,8 +3,6 @@
 ![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange.svg)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-<3
-
 A simple react app to teach my daughter (and maybe yours) to count to ten.
 
 ## Getting Started
