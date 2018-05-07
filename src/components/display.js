@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { lighten, shade } from 'polished'
 
 export const DisplayBox = styled.div`
@@ -12,6 +12,7 @@ export const DisplayBox = styled.div`
   border-radius: 1.5em 0;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
   padding: 1em 4em;
+  animation: ${props => props.finished ? `${rotate360} .5s ease-in-out` : undefined };
 `
 
 export const Number = styled.h2`
@@ -24,4 +25,18 @@ export const Number = styled.h2`
 export const Text = styled.p`
   font-size: 2em;
   color: ${props => shade(0.5, props.theme.main)};
+`
+
+const rotate360 = keyframes`
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.3);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 `

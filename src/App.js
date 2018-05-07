@@ -1,11 +1,35 @@
 import React, { Component } from 'react'
-import { ThemeProvider } from 'styled-components'
+import { injectGlobal, ThemeProvider } from 'styled-components'
 
 import { AppContainer, Title, Description } from './components/basic'
 
 import Display from './Display'
 
-import './App.css'
+injectGlobal`
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+  }
+
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+  body {
+    font: normal normal 16px/1.5 'Open Sans', sans-serif;
+    background: #eee;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Passion One', cursive;
+  }
+`
 
 class App extends Component {
   constructor (props) {
@@ -26,12 +50,12 @@ class App extends Component {
 
   componentDidMount () {
     let synth
-    
+
     if ('speechSynthesis' in window) {
       synth = new SpeechSynthesisUtterance()
       synth.voice = speechSynthesis.getVoices().filter((voice) => voice.name === 'Google português do Brasil')[0]
       synth.volume = 1
-      synth.pitch = 1.1
+      synth.rate = 1.2
       synth.lang = 'pt-BR'
     }
 
@@ -39,6 +63,7 @@ class App extends Component {
       if (event.keyCode === 32) {
         if (!speechSynthesis.speaking) {
           let newColor = this.randomColor()
+
           this.setState({ theme: { ...this.state.theme, main: newColor } })
 
           if (this.state.counter < 10) {
@@ -59,7 +84,7 @@ class App extends Component {
         <AppContainer>
           <Title>Vamos contar até 10?</Title>
           <Description>Pressione a barra de espaço para contar</Description>
-          <Display counter={ this.state.counter } text={ this.state.numbers[this.state.counter] } />
+          <Display counter={ this.state.counter } text={ this.state.numbers[this.state.counter] } finished={ this.state.counter === 10 } />
         </AppContainer>
       </ThemeProvider>
     )
