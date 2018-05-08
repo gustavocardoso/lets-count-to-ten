@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { darken, lighten, radialGradient, shade } from 'polished'
 
 export const AppContainer = styled.div`
@@ -12,6 +12,7 @@ export const AppContainer = styled.div`
   ${props => radialGradient({
     colorStops: [`${lighten(0.2, props.theme.main)} 0%`, `${props.theme.main} 100%`]
   })};
+  animation: ${props => props.finished ? `${flash} .1s ease 5` : undefined };
 `
 
 export const Title = styled.h1`
@@ -32,5 +33,20 @@ export const Description = styled.p`
 
   @media (min-width: 600px) {
     font-size: 1.6em;
+  }
+`
+
+const flash = keyframes`
+  0% {
+    background-image: none;
+    background-color: ${props => props.theme.main};
+  }
+
+  25% {
+    background-color: #eee;
+  }
+
+  100% {
+    background-color: ${props => props.theme.main};
   }
 `

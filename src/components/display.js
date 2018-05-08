@@ -12,7 +12,7 @@ export const DisplayBox = styled.div`
   border-radius: 1.5em 0;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
   padding: 1em 4em;
-  animation: ${props => props.finished ? `${rotate360} .5s ease-in-out` : undefined };
+  animation: ${props => props.finished ? `${pulse} .5s ease-in-out` : undefined };
 `
 
 export const Number = styled.h2`
@@ -27,7 +27,7 @@ export const Text = styled.p`
   color: ${props => shade(0.5, props.theme.main)};
 `
 
-const rotate360 = keyframes`
+const pulse = keyframes`
   0% {
     transform: scale(1);
   }

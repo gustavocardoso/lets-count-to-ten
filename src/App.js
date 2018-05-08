@@ -38,6 +38,7 @@ class App extends Component {
     this.state = {
       counter: 0,
       numbers: ['zero', 'um', 'dois', 'três', 'quatro', 'cinco', 'seis', 'sete', 'oito', 'nove', 'dez'],
+      finished: undefined,
       theme: {
         main: this.randomColor()
       }
@@ -65,11 +66,16 @@ class App extends Component {
           let newColor = this.randomColor()
 
           this.setState({ theme: { ...this.state.theme, main: newColor } })
-
           if (this.state.counter < 10) {
             this.setState((prevState) => ({ counter: prevState.counter + 1 }))
             synth.text = this.state.numbers[this.state.counter]
             speechSynthesis.speak(synth)
+
+            if (this.state.counter === 10) {
+              this.setState({ finished: true })
+            } else {
+              this.setState({ finished: false })
+            }
           } else {
             this.setState((prevState) => ({ counter: prevState.counter - 10 }))
           }
@@ -81,10 +87,10 @@ class App extends Component {
   render() {
     return (
       <ThemeProvider theme={ this.state.theme }>
-        <AppContainer>
+        <AppContainer finished={ this.state.finished }>
           <Title>Vamos contar até 10?</Title>
           <Description>Pressione a barra de espaço para contar</Description>
-          <Display counter={ this.state.counter } text={ this.state.numbers[this.state.counter] } finished={ this.state.counter === 10 } />
+          <Display counter={ this.state.counter } text={ this.state.numbers[this.state.counter] } finished={ this.state.finished } />
         </AppContainer>
       </ThemeProvider>
     )
