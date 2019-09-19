@@ -39,16 +39,16 @@ class App extends Component {
       counter: 0,
       numbers: [
         'zero',
-        'um',
-        'dois',
-        'três',
-        'quatro',
-        'cinco',
-        'seis',
-        'sete',
-        'oito',
-        'nove',
-        'dez'
+        'one',
+        'two',
+        'three',
+        'four',
+        'five',
+        'six',
+        'seven',
+        'eight',
+        'nine',
+        'ten'
       ],
       finished: undefined,
       theme: {
@@ -68,12 +68,12 @@ class App extends Component {
 
     if ('speechSynthesis' in window) {
       synth = new SpeechSynthesisUtterance()
-      synth.voice = speechSynthesis
-        .getVoices()
-        .filter(voice => voice.name === 'Google português do Brasil')[0]
+      // synth.voice = speechSynthesis
+      //   .getVoices()
+      //   .filter(voice => voice.name === 'Google português do Brasil')[0]
       synth.volume = 1
-      synth.rate = 1.2
-      synth.lang = 'pt-BR'
+      synth.rate = 1
+      synth.lang = 'en'
     }
 
     document.addEventListener('keydown', event => {
@@ -82,8 +82,10 @@ class App extends Component {
           let newColor = this.randomColor()
 
           this.setState({ theme: { ...this.state.theme, main: newColor } })
+
           if (this.state.counter < 10) {
             this.setState(prevState => ({ counter: prevState.counter + 1 }))
+
             synth.text = this.state.numbers[this.state.counter]
             speechSynthesis.speak(synth)
 
@@ -104,8 +106,8 @@ class App extends Component {
     return (
       <ThemeProvider theme={this.state.theme}>
         <AppContainer finished={this.state.finished}>
-          <Title>Vamos contar até 10?</Title>
-          <Description>Pressione a barra de espaço para contar</Description>
+          <Title>Let's count to 10?</Title>
+          <Description>Press the space bar to play</Description>
           <Display
             counter={this.state.counter}
             text={this.state.numbers[this.state.counter]}
