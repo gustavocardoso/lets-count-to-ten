@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { injectGlobal, ThemeProvider } from 'styled-components'
+import GithubCorner from 'react-github-corner'
 
 import { AppContainer, Title, Description } from './components/basic'
 
@@ -113,6 +114,7 @@ class App extends Component {
             text={this.state.numbers[this.state.counter]}
             finished={this.state.finished}
           />
+          <GithubCorner href='https://github.com/gustavocardoso/lets-count-to-ten' />
         </AppContainer>
       </ThemeProvider>
     )
