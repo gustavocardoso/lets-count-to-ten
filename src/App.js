@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { injectGlobal, ThemeProvider } from 'styled-components'
 import GithubCorner from 'react-github-corner'
 
-import { AppContainer, Title, Description } from './components/basic'
+import { AppContainer, Title, Description, Footer } from './components/basic'
 
 import Display from './Display'
 
@@ -109,11 +109,15 @@ class App extends Component {
         <AppContainer finished={this.state.finished}>
           <Title>Let's count to 10?</Title>
           <Description>Press the space bar to play</Description>
+
           <Display
             counter={this.state.counter}
             text={this.state.numbers[this.state.counter]}
             finished={this.state.finished}
           />
+
+          <Footer>For best results, please, run this app on Google Chrome</Footer>
+
           <GithubCorner href='https://github.com/gustavocardoso/lets-count-to-ten' />
         </AppContainer>
       </ThemeProvider>
