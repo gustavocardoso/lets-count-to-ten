@@ -116,7 +116,7 @@ class App extends Component {
             finished={this.state.finished}
           />
 
-          <Footer>For best results, please, run this app on Google Chrome</Footer>
+          <Footer>For a better experience, please, run this app on Google Chrome</Footer>
 
           <GithubCorner href='https://github.com/gustavocardoso/lets-count-to-ten' />
         </AppContainer>
