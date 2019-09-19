@@ -37,7 +37,19 @@ class App extends Component {
 
     this.state = {
       counter: 0,
-      numbers: ['zero', 'um', 'dois', 'três', 'quatro', 'cinco', 'seis', 'sete', 'oito', 'nove', 'dez'],
+      numbers: [
+        'zero',
+        'um',
+        'dois',
+        'três',
+        'quatro',
+        'cinco',
+        'seis',
+        'sete',
+        'oito',
+        'nove',
+        'dez'
+      ],
       finished: undefined,
       theme: {
         main: this.randomColor()
@@ -46,7 +58,9 @@ class App extends Component {
   }
 
   randomColor () {
-    return `#${ Math.random().toString(16).substr(-6) }`
+    return `#${Math.random()
+      .toString(16)
+      .substr(-6)}`
   }
 
   componentDidMount () {
@@ -54,20 +68,22 @@ class App extends Component {
 
     if ('speechSynthesis' in window) {
       synth = new SpeechSynthesisUtterance()
-      synth.voice = speechSynthesis.getVoices().filter((voice) => voice.name === 'Google português do Brasil')[0]
+      synth.voice = speechSynthesis
+        .getVoices()
+        .filter(voice => voice.name === 'Google português do Brasil')[0]
       synth.volume = 1
       synth.rate = 1.2
       synth.lang = 'pt-BR'
     }
 
-    document.addEventListener('keydown', (event) => {
+    document.addEventListener('keydown', event => {
       if (event.keyCode === 32) {
         if (!speechSynthesis.speaking) {
           let newColor = this.randomColor()
 
           this.setState({ theme: { ...this.state.theme, main: newColor } })
           if (this.state.counter < 10) {
-            this.setState((prevState) => ({ counter: prevState.counter + 1 }))
+            this.setState(prevState => ({ counter: prevState.counter + 1 }))
             synth.text = this.state.numbers[this.state.counter]
             speechSynthesis.speak(synth)
 
@@ -77,20 +93,24 @@ class App extends Component {
               this.setState({ finished: false })
             }
           } else {
-            this.setState((prevState) => ({ counter: prevState.counter - 10 }))
+            this.setState(prevState => ({ counter: prevState.counter - 10 }))
           }
         }
       }
     })
   }
 
-  render() {
+  render () {
     return (
-      <ThemeProvider theme={ this.state.theme }>
-        <AppContainer finished={ this.state.finished }>
+      <ThemeProvider theme={this.state.theme}>
+        <AppContainer finished={this.state.finished}>
           <Title>Vamos contar até 10?</Title>
           <Description>Pressione a barra de espaço para contar</Description>
-          <Display counter={ this.state.counter } text={ this.state.numbers[this.state.counter] } finished={ this.state.finished } />
+          <Display
+            counter={this.state.counter}
+            text={this.state.numbers[this.state.counter]}
+            finished={this.state.finished}
+          />
         </AppContainer>
       </ThemeProvider>
     )
