@@ -2,7 +2,6 @@
   "name": "lets-count-to-ten",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://gustavocardoso.github.io/lets-count-to-ten",
   "dependencies": {
     "polished": "^1.9.2",
     "react": "^16.3.2",
